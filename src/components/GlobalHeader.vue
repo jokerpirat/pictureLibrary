@@ -5,7 +5,7 @@
         <router-link to="/">
           <div class="title-bar">
             <img class="logo" src="../assets/logo.png" alt-="logo" />
-            <div class="title">鱼皮云图库</div>
+            <div class="title">图片哈哈哈哈</div>
           </div>
         </router-link>
       </a-col>
@@ -72,6 +72,24 @@ const originItems = [
     label: h('a', { href: 'https://www.codefather.cn', target: '_blank' }, '编程导航'),
     title: '编程导航',
   },
+  {
+    key: '/add_picture',
+    label: '创建图片',
+    title: '创建图片',
+  },
+  {
+    key: '/admin/pictureManage',
+    label: '图片管理',
+    title: '图片管理',
+  },
+  {
+    key: '/admin/spaceManage',
+    label: '空间管理',
+    title: '空间管理',
+  },
+
+
+
 ]
 
 // 根据权限过滤菜单项
