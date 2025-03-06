@@ -6,6 +6,10 @@ server:
     session:
       cookie:
         max-age: 864000
+bing:
+  visual-search:
+    endpoint: https://api.cognitive.microsoft.com/bing/v7.0/images/visualsearch
+    subscription-key:
 spring:
   profiles:
     active: local
