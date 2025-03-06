@@ -31,6 +31,10 @@
               </template>
             </a-card-meta>
             <template v-if="showOp" #actions>
+              <a-space @click="(e) => doSearch(picture,e)">
+                <search-outlined/>
+                搜索
+              </a-space>
               <a-space @click="(e) => doEdit(picture,e)">
                 <EditOutlined/>
                 编辑
@@ -103,6 +107,13 @@ const doDelete = async (picture, e) => {
   } else {
     message.error('删除失败')
   }
+}
+
+const doSearch = (picture,e) => {
+  // 阻止冒泡
+  e.stopPropagation()
+  // 新开window窗口
+  window.open(`/search_picture?pictureId=${picture.id}`)
 }
 </script>
 

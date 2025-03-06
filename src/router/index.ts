@@ -11,6 +11,8 @@ import SpaceManagePage from "@/page/admin/SpaceManagePage.vue";
 import AddSpacePage from "@/page/AddSpacePage.vue";
 import MySpacePage from "@/page/MySpacePage.vue";
 import SpaceDetailPage from "@/page/SpaceDetailPage.vue";
+import SearchPictureSearch from "@/page/SearchPictureSearch.vue";
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -78,6 +80,11 @@ const router = createRouter({
       props: true,
     },
 
+    {
+      path:'/search_picture',
+      name:'百度图片搜索',
+      component: SearchPictureSearch,
+    },
   ],
 })
 
