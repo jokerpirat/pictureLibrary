@@ -6,9 +6,11 @@ import com.yupi.yupicturebackend.model.dto.picture.*;
 import com.yupi.yupicturebackend.model.entity.Picture;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yupi.yupicturebackend.model.entity.User;
+import com.yupi.yupicturebackend.model.vo.LoginUserVO;
 import com.yupi.yupicturebackend.model.vo.PictureVO;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
 * @author 蝙蝠侠告诉我回哥谭吧不抓我了
@@ -114,4 +116,13 @@ public interface PictureService extends IService<Picture> {
      * @param loginUser
      */
     void editPicture(PictureEditRequest pictureEditRequest, User loginUser);
+
+    /**
+     * 颜色搜图
+     * @param spaceId
+     * @param picColor
+     * @param loginUser
+     * @return
+     */
+    List<PictureVO> searchPictureByColor(Long spaceId, String picColor, User loginUser);
 }

@@ -15,7 +15,6 @@ import com.yupi.yupicturebackend.exception.ErrorCode;
 import com.yupi.yupicturebackend.manager.CosManager;
 import com.yupi.yupicturebackend.model.dto.file.UploadPictureResult;
 import lombok.extern.slf4j.Slf4j;
-
 import javax.annotation.Resource;
 import java.io.File;
 import java.util.Date;
@@ -70,7 +69,7 @@ public abstract class PictureUploadTemplate {
                     thumbnailCiObject = objectList.get(1);
                 }
                 // 封装压缩图的返回结果
-                return buildResult(originFilename,compresssedCiObject,thumbnailCiObject);
+                return buildResult(originFilename,compresssedCiObject,thumbnailCiObject,imageInfo);
             }
             return buildResult(originFilename, file, uploadPath, imageInfo);
         } catch (Exception e) {
@@ -89,7 +88,7 @@ public abstract class PictureUploadTemplate {
      * @param thumbnailCiObject 缩略图对象
      * @return
      */
-    private UploadPictureResult buildResult(String originFilename, CIObject compresssedCiObject ,CIObject thumbnailCiObject) {
+    private UploadPictureResult buildResult(String originFilename, CIObject compresssedCiObject ,CIObject thumbnailCiObject,ImageInfo imageInfo) {
         UploadPictureResult uploadPictureResult = new UploadPictureResult();
         int picWidth = compresssedCiObject.getWidth();
         int picHeight = compresssedCiObject.getHeight();
@@ -101,6 +100,7 @@ public abstract class PictureUploadTemplate {
         uploadPictureResult.setPicScale(picScale);
         uploadPictureResult.setPicFormat(compresssedCiObject.getFormat());
         uploadPictureResult.setPicSize(compresssedCiObject.getSize().longValue());
+        uploadPictureResult.setPicColor(imageInfo.getAve());
         //设置压缩后的原图地址
         uploadPictureResult.setUrl(cosClientConfig.getHost() + "/" + compresssedCiObject.getKey());
         //设置缩略图地址
@@ -140,6 +140,7 @@ public abstract class PictureUploadTemplate {
         uploadPictureResult.setPicFormat(imageInfo.getFormat());
         uploadPictureResult.setPicSize(FileUtil.size(file));
         uploadPictureResult.setUrl(cosClientConfig.getHost() + "/" + uploadPath);
+        uploadPictureResult.setPicColor(imageInfo.getAve());
         return uploadPictureResult;
     }
 
@@ -155,4 +156,6 @@ public abstract class PictureUploadTemplate {
             log.error("file delete error, filepath = {}", file.getAbsolutePath());
         }
     }
+
+
 }
