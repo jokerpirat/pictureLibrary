@@ -49,6 +49,19 @@
             <a-descriptions-item label="大小">
               {{ formatSize(picture.picSize) }}
             </a-descriptions-item>
+            <a-descriptions-item label="主色调">
+              <a-space>
+                {{ picture.picColor ?? '-' }}
+                <div
+                  v-if="picture.picColor"
+                  :style="{
+                    backgroundColor: toHexColor(picture.picColor),
+                    width: '16px',
+                    height: '16px',
+                  }">
+                </div>
+              </a-space>
+            </a-descriptions-item>
           </a-descriptions>
           <!-- 图片操作 -->
           <a-space wrap>
@@ -83,7 +96,7 @@
 import { computed, onMounted, ref } from "vue";
 import { deletePictureUsingPost, getPictureVoByIdUsingGet } from "@/api/pictureController.ts";
 import { message } from 'ant-design-vue'
-import { downloadImage, formatSize } from "@/utils";
+import { downloadImage, formatSize, toHexColor } from "@/utils";
 import { useLoginUserStore } from "@/stores/useLoginUserStore.ts";
 import router from "@/router";
 

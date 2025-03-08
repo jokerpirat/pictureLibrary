@@ -30,10 +30,15 @@
                 </a-flex>
               </template>
             </a-card-meta>
+            <ShareModal ref="shareModalRef" :link="shareLink" />
             <template v-if="showOp" #actions>
               <a-space @click="(e) => doSearch(picture,e)">
                 <search-outlined/>
                 搜索
+              </a-space>
+              <a-space @click="(e) => doShare(picture,e)">
+                <share-alt-outlined/>
+                分享
               </a-space>
               <a-space @click="(e) => doEdit(picture,e)">
                 <EditOutlined/>
@@ -56,6 +61,8 @@
 import { useRouter } from 'vue-router'
 import { deletePictureUsingPost } from "@/api/pictureController.ts";
 import { message } from "ant-design-vue";
+import ShareModal from "@/components/ShareModal.vue";
+import { ref } from "vue";
 
 interface Props {
   dataList?: API.PictureVO[]
@@ -69,6 +76,21 @@ const props = withDefaults(defineProps<Props>(), {
   loading: false,
   showOp: false,
 })
+
+
+// 分享弹窗引用
+const shareModalRef = ref()
+// 分享链接
+const shareLink = ref<string>()
+
+// 分享
+const doShare = (picture: API.PictureVO, e: Event) => {
+  e.stopPropagation()
+  shareLink.value = `${window.location.protocol}//${window.location.host}/picture/${picture.id}`
+  if (shareModalRef.value) {
+    shareModalRef.value.openModal()
+  }
+}
 
 // 跳转至图片详情
 const router = useRouter()
