@@ -60,4 +60,3 @@ knife4j:
         api-rule-resources:
           - com.yupi.yupicturebackend.controller
 
-
