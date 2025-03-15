@@ -59,4 +59,7 @@ knife4j:
         api-rule: package # 扫包
         api-rule-resources:
           - com.yupi.yupicturebackend.controller
+# 阿里云 AI 配置
+aliYunAi:
+  apiKey: sk-b67749fa571f432a857bcafc8bc02312
 
