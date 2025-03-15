@@ -123,7 +123,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         if(currentUser == null || currentUser.getId() == null){
             throw new BusinessException(ErrorCode.NOT_LOGIN_ERROR);
         }
-        // 从数据库中查询（追求性能可以注释）
+        // 从数据库中查询是否存在该用户
         Long userId = currentUser.getId();
         currentUser = this.getById(userId);
         if(currentUser == null){
